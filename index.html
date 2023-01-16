@@ -1,1 +1,124 @@
+<!DOCTYPE html>
+<html>
+  
+ <head>
+ 
+   <title>Are They Vegan Friendly?</title>
 
+  <!-- Load Leaflet code library: see http://leafletjs.com/download.html -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+
+  <!-- Position the map and title with Cascading Style Sheet (CSS) -->
+   
+  
+  <style>
+  
+    body { margin:0; padding:0; }
+    #map { position: absolute; top:0; bottom:0; right:0; left:0; }
+    #map-title { position: relative; margin-top: 10px; margin-left: 25%; float: left; background: white; border: 2px solid rgba(0,0,0,0.2); padding: 6px 8px; font-family: Helvetica; font-weight: bold; font-size: 1.2rem; z-index: 800; }
+
+   
+  </style>
+   
+  </head>
+ 
+ <body>
+
+    <!-- Display the map and title with HTML division tags  -->
+    <div id="map-title">Are They Vegan<br>Friendly?</div>
+    <div id="map"></div>
+
+    <!-- Create the interactive map content with JavaScript (.js) -->
+  <script>
+    
+    // Initialize the map and set the view
+    var map = L.map('map').setView([-33.8688, 151.2093], 13);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://osm.org/copyright">\
+      OpenStreetMap</a> contributors, &copy;\
+      <a href="https://carto.com/attribution">CARTO</a>'
+    }).addTo(map);
+
+    // Gets user location and is used at the end of the document since it disrupts the rest of the markers
+    function getUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+            var userLocation = L.marker([lat, lon]).addTo(map);
+            userLocation.bindPopup("You are here!");
+        });
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+      }
+    }
+
+    // Used to get the NOUN PROJECT icons using their API and make Icons for markers
+    var apiKey = "186c52f1f87a4f33ba202779b80e6210";
+    var iconId = "ICON_ID";
+
+    $.ajax({
+        url: "https://api.thenounproject.com/icon/" + iconId,
+        type: "GET",
+        headers: {
+            "Authorization": "Bearer " + apiKey
+        },
+        success: function(data) {
+            var iconUrl = data.icon.preview_url;
+            var customIcon = L.icon({
+                iconUrl: iconUrl,
+                iconSize: [38, 95],
+                iconAnchor: [22, 94],
+                popupAnchor: [-3, -76]
+        }
+
+    
+    // an array of coordinates for YES Chai Me
+    var coordinatesChaiMe = [
+      {lat: -33.882948709789, lng: 151.1914159115681, title: "Sapphos", Soy: "", Oat: "Alt Dairy Co", Almond: "", Date: "Nov 2022"},
+      {lat: -33.887869824610696, lng: 151.21438351549025, title: "Bourke St Surry Hills", Soy: "Bonsoy", Oat: "Alt Dairy Co", Almond: "", Date: "Nov 2022"},
+      {lat: -33.86435381387368, lng: 151.20142669807498, title: "Bourke St Barangaroo", Soy: "", Oat: "", Almond: "", Date: "Nov 2022"}
+    ];
+
+    //loop through coordinates and add markers
+    for (var i = 0; i < coordinatesChaiMe.length; i++) {
+        var marker = new L.marker([coordinatesChaiMe[i].lat, coordinatesChaiMe[i].lng]).addTo(map);
+        marker.bindPopup(
+          "<h3><b>" + coordinatesChaiMe[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesChaiMe[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesChaiMe[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesChaiMe[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesChaiMe[i].Date);
+    }
+
+    // an array of coordinates for VEGAN Chai
+    var coordinatesVeganChai = [
+      {lat: -33.88226770573398, lng: 151.19015070768268, title: "Oh My Days", Soy: "", Oat: "", Almond: "", Date: "Nov 2022"},
+      {lat: -33.88360595953672, lng: 151.19162860482174, title: "Lilypad Sydney", Soy: "", Oat: "", Almond: "", Date: "Nov 2022"},
+      {lat: -33.868925740936255, lng: 151.20771357624943, title: "Romolo Pitt St", Soy: "", Oat: "", Almond: "", Date: "Nov 2022"}
+    ];
+
+    //loop through coordinates and add markers
+    for (var i = 0; i < coordinatesVeganChai.length; i++) {
+      var marker = new L.marker([coordinatesVeganChai[i].lat, coordinatesVeganChai[i].lng]).addTo(map);
+        marker.bindPopup(
+          "<h3><b>" + coordinatesVeganChai[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesVeganChai[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesVeganChai[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesVeganChai[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesVeganChai[i].Date);
+    }
+
+    var coordinatesNotEthical = [
+
+      {lat: -32.88226770573398, lng: 151.19015070768268, title: "Oh My Days", Soy: "", Oat: "", Almond: "", Date: "Nov 2022"},
+      
+      ];
+
+    //loop through coordinates and add markers
+    for (var i = 0; i < coordinatesNotEthical.length; i++) {
+      var marker = new L.marker([coordinatesNotEthical[i].lat, coordinatesNotEthical[i].lng]).addTo(map);
+        marker.bindPopup(
+          "<h3><b>" + coordinatesNotEthical[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesNotEthical[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesNotEthical[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesNotEthical[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesNotEthical[i].Date);
+    }
+
+    // Makes a marker for user location
+    var marker = new L.marker(getUserLocation()).addTo(map);
+
+  </script>
+ </body>
+</html>
