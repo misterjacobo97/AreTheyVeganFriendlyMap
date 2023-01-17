@@ -54,22 +54,13 @@
         console.log("Geolocation is not supported by this browser.");
       }
     }
-
-    // Used to get the NOUN PROJECT icons using their API and make Icons for markers
-    $.ajax({
-        url: "https://api.thenounproject.com/icon/" + iconId,
-        type: "GET",
-        headers: {
-            "Authorization": "Bearer " + apiKey
-        },
-        success: function(data) {
-            var iconUrl = data.icon.preview_url;
-            var customIcon = L.icon({
-                iconUrl: iconUrl,
-                iconSize: [38, 95],
-                iconAnchor: [22, 94],
-                popupAnchor: [-3, -76]
-        }
+    
+    var customIcon = L.icon({
+      iconUrl: 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="red"><path d="M10 20S3.075 20 0 13.652 3.075 7 10 7s10 6.348 10 13.652z"/></svg>',
+      iconSize: [25, 41],
+      iconAnchor: [12.5, 41],
+      popupAnchor: [0, -41]
+     }
 
     
     // an array of coordinates for YES Chai Me
@@ -81,7 +72,7 @@
 
     //loop through coordinates and add markers
     for (var i = 0; i < coordinatesChaiMe.length; i++) {
-        var marker = new L.marker([coordinatesChaiMe[i].lat, coordinatesChaiMe[i].lng]).addTo(map);
+        var marker = new L.marker([coordinatesChaiMe[i].lat, coordinatesChaiMe[i].lng],{icon: customIcon}).addTo(map);
         marker.bindPopup(
           "<h3><b>" + coordinatesChaiMe[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesChaiMe[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesChaiMe[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesChaiMe[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesChaiMe[i].Date);
     }
