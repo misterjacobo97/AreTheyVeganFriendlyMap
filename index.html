@@ -55,8 +55,24 @@
       }
     }
     
-    var customIcon = L.icon({
-      iconUrl: 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="green"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>',
+    // custom Icons
+    var GreenIcon = L.icon({
+      iconUrl: 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0z" fill="rgb(86,113,90)"></path></svg>',
+      iconSize: [30, 30],
+      iconAnchor: [12.5, 41],
+      popupAnchor: [0, -41]
+     })
+
+    var RedIcon = L.icon({
+      iconUrl: 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0z" fill="rgb(214,50,50)"></path></svg>',
+      iconSize: [30, 30],
+      iconAnchor: [12.5, 41],
+      popupAnchor: [0, -41]
+     })
+
+
+    var YellowIcon = L.icon({
+      iconUrl: 'data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0z" fill="rgb(241,194,50)"></path></svg>',
       iconSize: [30, 30],
       iconAnchor: [12.5, 41],
       popupAnchor: [0, -41]
@@ -72,7 +88,7 @@
 
     //loop through coordinates and add markers
     for (var i = 0; i < coordinatesChaiMe.length; i++) {
-        var marker = new L.marker([coordinatesChaiMe[i].lat, coordinatesChaiMe[i].lng],{icon: customIcon}).addTo(map);
+        var marker = new L.marker([coordinatesChaiMe[i].lat, coordinatesChaiMe[i].lng],{icon: YellowIcon}).addTo(map);
         marker.bindPopup(
           "<h3><b>" + coordinatesChaiMe[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesChaiMe[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesChaiMe[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesChaiMe[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesChaiMe[i].Date);
     }
@@ -86,7 +102,7 @@
 
     //loop through coordinates and add markers
     for (var i = 0; i < coordinatesVeganChai.length; i++) {
-      var marker = new L.marker([coordinatesVeganChai[i].lat, coordinatesVeganChai[i].lng]).addTo(map);
+      var marker = new L.marker([coordinatesVeganChai[i].lat, coordinatesVeganChai[i].lng], {icon: GreenIcon}).addTo(map);
         marker.bindPopup(
           "<h3><b>" + coordinatesVeganChai[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesVeganChai[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesVeganChai[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesVeganChai[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesVeganChai[i].Date);
     }
@@ -99,7 +115,7 @@
 
     //loop through coordinates and add markers
     for (var i = 0; i < coordinatesNotEthical.length; i++) {
-      var marker = new L.marker([coordinatesNotEthical[i].lat, coordinatesNotEthical[i].lng]).addTo(map);
+      var marker = new L.marker([coordinatesNotEthical[i].lat, coordinatesNotEthical[i].lng], {icon: RedIcon}).addTo(map);
         marker.bindPopup(
           "<h3><b>" + coordinatesNotEthical[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesNotEthical[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesNotEthical[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesNotEthical[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesNotEthical[i].Date);
     }
