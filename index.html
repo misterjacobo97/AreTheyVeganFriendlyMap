@@ -38,7 +38,7 @@
     // Initialize the map and set the view
     var map = L.map('map').setView([-33.8688, 151.2093], 13);
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    var mapLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://osm.org/copyright">\
       OpenStreetMap</a> contributors, &copy;\
       <a href="https://carto.com/attribution">CARTO</a>'
@@ -133,7 +133,7 @@
 
       
       var baseLayers = {
-        "Map" = map
+        "Map" = mapLayer
       }
       
       // creates an overlay object
