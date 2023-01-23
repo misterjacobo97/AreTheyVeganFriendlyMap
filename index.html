@@ -145,6 +145,10 @@
         "Vegan" : markerVeganGroup,
         "Not Friendly" : markerNotEthicalGroup
       }
+      
+      
+      // add the layer control to the map
+      L.control.layers(baseLayers, overlays).addTo(map);
 
     // Makes a marker for user location
 //     var marker = new L.marker(getUserLocation()).addTo(map);
