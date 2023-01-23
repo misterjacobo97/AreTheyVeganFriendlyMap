@@ -42,7 +42,9 @@
       attribution: '&copy; <a href="https://osm.org/copyright">\
       OpenStreetMap</a> contributors, &copy;\
       <a href="https://carto.com/attribution">CARTO</a>'
-    }).addTo(map);
+    });
+    
+    mapLayer.addTo(map);
 
     // Gets user location and is used at the end of the document since it disrupts the rest of the markers
 //     function getUserLocation() {
