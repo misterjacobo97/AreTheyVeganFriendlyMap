@@ -103,7 +103,7 @@
 
     //loop through coordinates and add markers
     for (var i = 0; i < coordinatesChaiMe.length; i++) {
-        var marker = new L.marker([coordinatesChaiMe[i].lat, coordinatesChaiMe[i].lng],{icon: YellowIcon}).addTo(map);
+        var markerChaiMe = new L.marker([coordinatesChaiMe[i].lat, coordinatesChaiMe[i].lng],{icon: YellowIcon}).addTo(map);
         marker.bindPopup(
           "<h3><b>" + coordinatesChaiMe[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesChaiMe[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesChaiMe[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesChaiMe[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesChaiMe[i].Date);
     }
@@ -117,7 +117,7 @@
 
     //loop through coordinates and add markers
     for (var i = 0; i < coordinatesVeganChai.length; i++) {
-      var marker = new L.marker([coordinatesVeganChai[i].lat, coordinatesVeganChai[i].lng], {icon: GreenIcon}).addTo(map);
+      var markerVeganChai = new L.marker([coordinatesVeganChai[i].lat, coordinatesVeganChai[i].lng], {icon: GreenIcon}).addTo(map);
         marker.bindPopup(
           "<h3><b>" + coordinatesVeganChai[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesVeganChai[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesVeganChai[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesVeganChai[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesVeganChai[i].Date);
     }
@@ -130,10 +130,31 @@
 
     //loop through coordinates and add markers
     for (var i = 0; i < coordinatesNotEthical.length; i++) {
-      var marker = new L.marker([coordinatesNotEthical[i].lat, coordinatesNotEthical[i].lng], {icon: RedIcon}).addTo(map);
+      var markerNotEthical = new L.marker([coordinatesNotEthical[i].lat, coordinatesNotEthical[i].lng], {icon: RedIcon}).addTo(map);
         marker.bindPopup(
           "<h3><b>" + coordinatesNotEthical[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesNotEthical[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesNotEthical[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesNotEthical[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesNotEthical[i].Date);
     }
+    
+    // Makes a layer control feature
+      // creates a base layer object
+      
+      //Layer groups to add
+      var markerChaiMeGroup = L.layerGroup(markerChaiMe);
+      var markerVeganGroup = L.layerGroup(markerVeganChai);
+      var markerNotEthicalGroup = L.layerGroup(markerNotEthical);
+
+      
+      var baseLayers = {
+        "Map" = osm
+      }
+      
+      // creates an overlay object
+      
+      var overlays = {
+        "Chai Me" = markerChaiMeGroup,
+        "Vegan" = markerVeganGroup,
+        "Not Friendly" = markerNotEthicalGroup
+      }
 
     // Makes a marker for user location
     var marker = new L.marker(getUserLocation()).addTo(map);
