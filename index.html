@@ -29,18 +29,6 @@
     <!-- Display title with HTML division tags  -->
     <div id="map-title">Are They Vegan<br>Friendly?</div>
    
-   <!-- toggable legend code -->
-    <div id="legend">
-      <h3>Legend</h3>
-      <div class="legend-content">
-          <span>Cafe 1</span>
-          <span>Cafe 2</span>
-      </div>
-    </div>
-    <button id="toggle-legend">Toggle Legend</button>
-   
-    <script src="legend.js"></script>
-   
     <!-- display map -->
     <div id="map"></div>
 
@@ -57,18 +45,18 @@
     }).addTo(map);
 
     // Gets user location and is used at the end of the document since it disrupts the rest of the markers
-    function getUserLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var lat = position.coords.latitude;
-            var lon = position.coords.longitude;
-            var userLocation = L.marker([lat, lon]).addTo(map);
-            userLocation.bindPopup("You are here!");
-        });
-    } else {
-        console.log("Geolocation is not supported by this browser.");
-      }
-    }
+//     function getUserLocation() {
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(function(position) {
+//             var lat = position.coords.latitude;
+//             var lon = position.coords.longitude;
+//             var userLocation = L.marker([lat, lon]).addTo(map);
+//             userLocation.bindPopup("You are here!");
+//         });
+//     } else {
+//         console.log("Geolocation is not supported by this browser.");
+//       }
+//     }
     
     // custom Icons
     var GreenIcon = L.icon({
