@@ -114,11 +114,17 @@
 
     //loop through coordinates and add markers for CHAI ME markers
     for (var i = 0; i < coordinatesChaiMe.length; i++) {
+        // creates a html element for the check boxes in the legend
+        var input = document.createElement('input');
+        // creates a new marker for every item in the array
         var markerChaiMe = new L.marker([coordinatesChaiMe[i].lat, coordinatesChaiMe[i].lng],{icon: YellowIcon}).addTo(map);
+        // creates a popup with the appropriate info that appears when the respective marker is clicked
         markerChaiMe.bindPopup(
           "<h3><b>" + coordinatesChaiMe[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesChaiMe[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesChaiMe[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesChaiMe[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesChaiMe[i].Date);
         // after it makes the marker for each cafe, it then adds it to the respective layer group object
         markerChaiMeGroup.addLayer(markerChaiMe);
+        // sets the checkbox to ticked by default
+        input.setAttribute('checked', true);
     }
 
     //loop through coordinates and add markers for VEGAN markers
