@@ -104,16 +104,16 @@
     ];
     
     //Layer groups to add
-    var markerChaiMeGroup = L.layerGroup(markerChaiMe);
-    var markerVeganGroup = L.layerGroup(markerVeganChai);
-    var markerNotEthicalGroup = L.layerGroup(markerNotEthical);
+    var markerChaiMeGroup = L.layerGroup();
+    var markerVeganGroup = L.layerGroup();
+    var markerNotEthicalGroup = L.layerGroup();
 
     //loop through coordinates and add markers for CHAI ME markers
     for (var i = 0; i < coordinatesChaiMe.length; i++) {
         var markerChaiMe = new L.marker([coordinatesChaiMe[i].lat, coordinatesChaiMe[i].lng],{icon: YellowIcon}).addTo(map);
         markerChaiMe.bindPopup(
           "<h3><b>" + coordinatesChaiMe[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesChaiMe[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesChaiMe[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesChaiMe[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesChaiMe[i].Date);
-        markerChaiMeGroup.addLayer(coordinatesChaiMe);
+        markerChaiMeGroup.addLayer(markerChaiMe);
     }
 
     //loop through coordinates and add markers for VEGAN markers
