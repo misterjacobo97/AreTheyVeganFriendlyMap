@@ -41,10 +41,14 @@
     var map = L.map('map').setView([-33.8688, 151.2093], 13);
 
     // making the tile map into a variable containing the layer for later use in the control layer panel
-    var mapLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    var mapLayerMinimal = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://osm.org/copyright">\
       OpenStreetMap</a> contributors, &copy;\
       <a href="https://carto.com/attribution">CARTO</a>'
+    });
+    
+    var mapLayerSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
     });
     
     mapLayer.addTo(map);
@@ -144,7 +148,8 @@
     // Makes a layer control feature
       // creates a base layer object
     var baseLayers = {
-      "Map" : mapLayer
+      "Map" : mapLayerMinimal,
+      "Satellite" : mapLayerSatellite
     }
 
     // creates an overlay object
