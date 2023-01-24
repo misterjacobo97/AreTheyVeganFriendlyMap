@@ -151,7 +151,7 @@
     L.control.layers(baseLayers, overlays).addTo(map);
     
     // function to toggle the markers on or off
-    map.on('baselayerchange', function (e)) {
+    map.on('baselayerchange', function (e) {
       if(e.name == "Chai Me"){
         markerChaiMeGroup.addTo(map);
         markerVeganGroup.remove();
@@ -168,7 +168,7 @@
         markerNotEthicalGroup.addTo(map);
       }
     
-    }
+    });
 
     // Makes a marker for user location
 //     var marker = new L.marker(getUserLocation()).addTo(map);
