@@ -157,6 +157,14 @@
 
     // add the layer control to the map where you can toggle the markers on or off
     L.control.layers(baseLayers, overlays, {collapsed: false}).addTo(map);
+    
+    // ticks the checkboxes after the control is loaded
+    setTimeout(function(){
+    var checkboxes = document.querySelectorAll('.leaflet-control-layers-selector');
+        for(var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].click();
+        }
+    }, 0);
 
     // Makes a marker for user location
 //     var marker = new L.marker(getUserLocation()).addTo(map);
