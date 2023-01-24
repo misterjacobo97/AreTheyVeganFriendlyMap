@@ -156,7 +156,7 @@
 
 
     // add the layer control to the map where you can toggle the markers on or off
-    L.control.layers(baseLayers, overlays).addTo(map);
+    L.control.layers(baseLayers, overlays, {collapsed: false}).addTo(map);
 
     // Makes a marker for user location
 //     var marker = new L.marker(getUserLocation()).addTo(map);
