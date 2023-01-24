@@ -128,27 +128,47 @@
     // Makes a layer control feature
       // creates a base layer object
       
-      //Layer groups to add
-      var markerChaiMeGroup = L.layerGroup(markerChaiMe);
-      var markerVeganGroup = L.layerGroup(markerVeganChai);
-      var markerNotEthicalGroup = L.layerGroup(markerNotEthical);
+    //Layer groups to add
+    var markerChaiMeGroup = L.layerGroup(markerChaiMe);
+    var markerVeganGroup = L.layerGroup(markerVeganChai);
+    var markerNotEthicalGroup = L.layerGroup(markerNotEthical);
 
-      
-      var baseLayers = {
-        "Map" : mapLayer
+
+    var baseLayers = {
+      "Map" : mapLayer
+    }
+
+    // creates an overlay object
+
+    var overlays = {
+      "Chai Me" : markerChaiMeGroup,
+      "Vegan" : markerVeganGroup,
+      "Not Friendly" : markerNotEthicalGroup
+    }
+
+
+    // add the layer control to the map
+    L.control.layers(baseLayers, overlays).addTo(map);
+    
+    // function to toggle the markers on or off
+    map.on('baselayerchange', function (e) {
+      if(e.name == "Chai Me"){
+        markerChaiMeGroup.addTo(map);
+        markerVeganGroup.remove();
+        markerNotEthicalGroup.remove();
       }
-      
-      // creates an overlay object
-      
-      var overlays = {
-        "Chai Me" : markerChaiMeGroup,
-        "Vegan" : markerVeganGroup,
-        "Not Friendly" : markerNotEthicalGroup
+      else if(e.name == "Vegan"){
+        markerChaiMeGroup.remove();
+        markerVeganGroup.addTo(map);
+        markerNotEthicalGroup.remove();
       }
-      
-      
-      // add the layer control to the map
-      L.control.layers(baseLayers, overlays).addTo(map);
+      else if(e.name == "Not Friendly"){
+        markerChaiMeGroup.remove();
+        markerVeganGroup.remove();
+        markerNotEthicalGroup.addTo(map);
+      }
+    
+    }
 
     // Makes a marker for user location
 //     var marker = new L.marker(getUserLocation()).addTo(map);
