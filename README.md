@@ -1,7 +1,7 @@
 # Are They Vegan Friendly Map
 
 ### Follow this link to see the current map
-*link:*  https://misterjacobo97.github.io/AreThetVeganFriendlyMap/
+*link:*  https://misterjacobo97.github.io/AreTheyVeganFriendlyMap/
 
 ## What is this project?
 
