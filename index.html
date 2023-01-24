@@ -51,21 +51,8 @@
       attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
     });
     
-    mapLayer.addTo(map);
-
-    // Gets user location and is used at the end of the document since it disrupts the rest of the markers
-//     function getUserLocation() {
-//     if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(function(position) {
-//             var lat = position.coords.latitude;
-//             var lon = position.coords.longitude;
-//             var userLocation = L.marker([lat, lon]).addTo(map);
-//             userLocation.bindPopup("You are here!");
-//         });
-//     } else {
-//         console.log("Geolocation is not supported by this browser.");
-//       }
-//     }
+    mapLayerMinimal.addTo(map);
+    mapLayerSatellite.addTo(map);
     
     // custom Icons
     var GreenIcon = L.icon({
@@ -170,9 +157,6 @@
             checkboxes[i].click();
         }
     }, 0);
-
-    // Makes a marker for user location
-//     var marker = new L.marker(getUserLocation()).addTo(map);
 
   </script>
  </body>
