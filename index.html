@@ -144,7 +144,7 @@
 
 
     // add the layer control to the map where you can toggle the markers on or off
-    L.control.layers(, overlays, {collapsed: false}).addTo(map);
+    L.control.layers(baseLayers, overlays, {collapsed: false}).addTo(map);
     
     // ticks the checkboxes after the control is loaded
     setTimeout(function(){
