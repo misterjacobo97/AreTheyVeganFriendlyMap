@@ -40,10 +40,6 @@
     // Initialize the map and set the view
     var map = L.map('map').setView([-33.8688, 151.2093], 13);
     
-    // making the tile map into a variable containing the layer for later use in the control layer panel
-    var mapLayerSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-    });
     
     var mapLayerMinimal = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://osm.org/copyright">\
@@ -53,7 +49,6 @@
     
     // adds map layers into the actual map
     mapLayerMinimal.addTo(map);
-    mapLayerSatellite.addTo(map);
 
     // custom Icons
     var GreenIcon = L.icon({
@@ -137,8 +132,7 @@
     // Makes a layer control feature
       // creates a base layer object
     var baseLayers = {
-      "Map" : mapLayerMinimal,
-      "Satellite" : mapLayerSatellite
+      "Map" : mapLayerMinimal
     }
 
     // creates an overlay object
@@ -150,7 +144,7 @@
 
 
     // add the layer control to the map where you can toggle the markers on or off
-    L.control.layers(baseLayers, overlays, {collapsed: false}).addTo(map);
+    L.control.layers(, overlays, {collapsed: false}).addTo(map);
     
     // ticks the checkboxes after the control is loaded
     setTimeout(function(){
