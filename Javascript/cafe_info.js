@@ -11,7 +11,9 @@ var coordinatesVeganOptions = [
     { lat: -33.88226770573398, lng: 151.19015070768268, title: "Oh My Days", Soy: "", Oat: "", Almond: "", Date: "Nov 2022", Extra: "No" },
     { lat: -33.88360595953672, lng: 151.19162860482174, title: "Lilypad Sydney", Soy: "", Oat: "", Almond: "", Date: "Nov 2022", Extra: "" },
     { lat: -33.868925740936255, lng: 151.20771357624943, title: "Romolo Pitt St", Soy: "", Oat: "", Almond: "", Date: "Nov 2022", Extra: "" },
-    { lat: -33.86802294087114, lng: 151.20623359868333, title: "Three Beans York St", Soy: "Bonsoy", Oat: "", Almond: "", Date: "Jan 2023", Extra: "Yes" }
+    { lat: -33.86802294087114, lng: 151.20623359868333, title: "Three Beans York St", Soy: "Bonsoy", Oat: "", Almond: "", Date: "Jan 2023", Extra: "Yes" },
+    { lat: -33.883664249143415, lng: 151.20961248317948, title: "Shift Eatery", Soy: "Bonsoy", Oat: "Alt Dairy Co", Almond: "", Date: "Nov 2022", Extra: "No" },
+    { lat: -33.79425745152499, lng: 151.1860205554046, title: "Espresso Zarcino ", Soy: "Bonsoy", Oat: "", Almond: "", Date: "Jan 2023", Extra: "Yes" }
 ];
 
 // an array of coordiantes for NOT ETHICAL 
