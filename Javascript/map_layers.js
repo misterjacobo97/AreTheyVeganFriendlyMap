@@ -3,4 +3,4 @@ var mapLayerMinimal = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{
       attribution: '&copy; <a href="https://osm.org/copyright">\
       OpenStreetMap</a> contributors, &copy;\
       <a href="https://carto.com/attribution">CARTO</a>'
-    });
+});
