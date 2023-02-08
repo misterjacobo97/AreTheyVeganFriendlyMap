@@ -19,3 +19,17 @@ var YellowIcon = L.icon({
     iconAnchor: [12.5, 41],
     popupAnchor: [0, -41]
 })
+
+function custom_icon(params){
+
+    if(params == "Chai Me!"){
+        return GreenIcon;
+    }
+    else if(params == "Vegan chai"){
+        return YellowIcon;
+    }
+    else if(params == "Nope."){
+        return RedIcon;
+    }
+
+}
