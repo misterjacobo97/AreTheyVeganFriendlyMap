@@ -52,7 +52,7 @@
     //loop through coordinates and add markers for CHAI ME markers
     for (var i = 0; i < coordinatesChaiMe.length; i++) {
       // creates a new marker for every item in the array
-      var markerChaiMe = new L.marker([coordinatesChaiMe[i].lat, coordinatesChaiMe[i].lng], { icon: YellowIcon }).addTo(map);
+      var markerChaiMe = new L.marker([coordinatesChaiMe[i].lat, coordinatesChaiMe[i].lng], { icon: custom_icon(coordinatesChaiMe[i].chai) }).addTo(map);
       // creates a popup with the appropriate info that appears when the respective marker is clicked
       markerChaiMe.bindPopup(
         "<h3><b>" + coordinatesChaiMe[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesChaiMe[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesChaiMe[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesChaiMe[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesChaiMe[i].Date + "<br><b>Extra cost for Plant-Based?</b> " + coordinatesChaiMe[i].Extra);
@@ -62,7 +62,7 @@
 
     //loop through coordinates and add markers for VEGAN markers
     for (var i = 0; i < coordinatesVeganOptions.length; i++) {
-      var markerVeganOptions = new L.marker([coordinatesVeganOptions[i].lat, coordinatesVeganOptions[i].lng], { icon: GreenIcon }).addTo(map);
+      var markerVeganOptions = new L.marker([coordinatesVeganOptions[i].lat, coordinatesVeganOptions[i].lng], { icon: custom_icon(coordinatesVeganOptions[i].chai) }).addTo(map);
       markerVeganOptions.bindPopup(
         "<h3><b>" + coordinatesVeganOptions[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesVeganOptions[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesVeganOptions[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesVeganOptions[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesVeganOptions[i].Date + "<br><b>Extra cost for Plant-Based?</b> " + coordinatesVeganOptions[i].Extra);
       // after it makes the marker for each cafe, it then adds it to the respective layer group object
@@ -71,7 +71,7 @@
 
     //loop through coordinates and add markers for NOT ETHICAL markers
     for (var i = 0; i < coordinatesNotEthical.length; i++) {
-      var markerNotEthical = new L.marker([coordinatesNotEthical[i].lat, coordinatesNotEthical[i].lng], { icon: RedIcon }).addTo(map);
+      var markerNotEthical = new L.marker([coordinatesNotEthical[i].lat, coordinatesNotEthical[i].lng], { icon: custom_icon(coordinatesNotEthical[i].chai) }).addTo(map);
       markerNotEthical.bindPopup(
         "<h3><b>" + coordinatesNotEthical[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesNotEthical[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesNotEthical[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesNotEthical[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesNotEthical[i].Date);
       // after it makes the marker for each cafe, it then adds it to the respective layer group object
