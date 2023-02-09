@@ -21,15 +21,15 @@ var YellowIcon = L.icon({
 })
 
 
-function custom_icon(params){
+function custom_icon(vegan, extra){
 
-    if(params == "Chai Me!"){
+    if(vegan == "Yes"){
         return GreenIcon;
     }
-    else if(params == "Vegan chai"){
+    else if(vegan == "No" && extra == "Yes"){
         return YellowIcon;
     }
-    else if(params == "Nope."){
+    else if(vegan == "No" && extra != "Yes"){
         return RedIcon;
     }
 
