@@ -11,6 +11,7 @@ Apart from a project aimed at learning and practicing html, css and javascript -
 
 ### In development
 
+
 ### Planned / Ideas
 - An external database to pull the info from - Notion / google sheets?
 - A way to find your location that's less buggy
