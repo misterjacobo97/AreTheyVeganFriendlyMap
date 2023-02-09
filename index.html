@@ -84,7 +84,7 @@
 
     // loop through coordinatesX cafe objects and add them as markers and to appropriate layergroup
     for (var i = 0; i < coordinatesX.length; i++) {
-      var markerX = new L.marker([coordinatesX[i].lat, coordinatesX[i].lng], { icon: custom_icon(,coordinatesX[i].vegan, coordinatesX[i].extra) }).addTo(map);
+      var markerX = new L.marker([coordinatesX[i].lat, coordinatesX[i].lng], { icon: custom_icon(coordinatesX[i].vegan, coordinatesX[i].extra) }).addTo(map);
       // if it's a cafe
       if(coordinatesX[i].isCafe == "Yes"){
         markerX.bindPopup(
