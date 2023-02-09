@@ -51,6 +51,7 @@
     var markerChaiMeGroup = L.layerGroup();
     var markerVeganGroup = L.layerGroup();
     var markerNotEthicalGroup = L.layerGroup();
+    var markerVeganRestaurants = L.layerGroup();
 
     //loop through coordinates and add markers for CHAI ME markers
     // for (var i = 0; i < coordinatesChaiMe.length; i++) {
@@ -87,7 +88,7 @@
       markerX.bindPopup(
         "<h3><b>" + coordinatesX[i].title + "</b></h3>" + "<b>Vegan cafe?</b> " + coordinatesX[i].vegan + "<br>" + "<b>Extra cost for mylk? </b> " + coordinatesX[i].Extra + "<br>" + "<b>Soy:</b> " + coordinatesX[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesX[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesX[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesX[i].Date);
       // after it makes the marker for each cafe, it then adds it to the respective layer group object
-      var function_marker = select_layer_group(coordinatesX[i].chai);
+      var function_marker = select_layer_group(coordinatesX[i].chai, coordinatesX[i].isCafe);
       
       function_marker.addLayer(markerX);
     }
@@ -102,7 +103,8 @@
     var overlays = {
       "Chai Me": markerChaiMeGroup,
       "Vegan chai": markerVeganGroup,
-      "Not Friendly": markerNotEthicalGroup
+      "Not Friendly": markerNotEthicalGroup,
+      "Vegan Non-coffee":markerVeganRestaurants,
     }
 
 
