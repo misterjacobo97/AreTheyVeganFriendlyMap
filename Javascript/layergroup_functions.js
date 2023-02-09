@@ -6,7 +6,7 @@ function select_layer_group(cafe){
     else if(cafe == "Vegan chai"){
         return markerVeganGroup;
     }
-    else if(cafe == "nope."){
+    else if(cafe == "Nope."){
         return markerNotEthicalGroup;
     }
 }
