@@ -84,10 +84,19 @@
 
     // loop through coordinatesX cafe objects and add them as markers and to appropriate layergroup
     for (var i = 0; i < coordinatesX.length; i++) {
-      var markerX = new L.marker([coordinatesX[i].lat, coordinatesX[i].lng], { icon: custom_icon(coordinatesX[i].vegan, coordinatesX[i].extra) }).addTo(map);
-      markerX.bindPopup(
-        "<h3><b>" + coordinatesX[i].title + "</b></h3>" + "<b>Vegan cafe?</b> " + coordinatesX[i].vegan + "<br>" + "<b>Extra cost for mylk? </b> " + coordinatesX[i].Extra + "<br>" + "<b>Soy:</b> " + coordinatesX[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesX[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesX[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesX[i].Date);
-      // after it makes the marker for each cafe, it then adds it to the respective layer group object
+      var markerX = new L.marker([coordinatesX[i].lat, coordinatesX[i].lng], { icon: custom_icon(,coordinatesX[i].vegan, coordinatesX[i].extra) }).addTo(map);
+      // if it's a cafe
+      if(coordinatesX[i].isCafe == "Yes"){
+        markerX.bindPopup(
+          "<h3><b>" + coordinatesX[i].title + "</b></h3>" + "<b>Vegan cafe?</b> " + coordinatesX[i].vegan + "<br>" + "<b>Extra cost for mylk? </b> " + coordinatesX[i].Extra + "<br>" + "<b>Soy:</b> " + coordinatesX[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesX[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesX[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesX[i].Date);
+        // after it makes the marker for each cafe, it then adds it to the respective layer group object
+      }
+      // if its not a cafe
+      else if(coordinatesX[i].isCafe == "No"){
+        markerX.bindPopup(
+          "<h3><b>" + coordinatesX[i].title + "</b></h3>" + "<b>Date last confirmed:</b> " + coordinatesX[i].Date);
+        // after it makes the marker for each cafe, it then adds it to the respective layer group object
+      }
       var function_marker = select_layer_group(coordinatesX[i].chai, coordinatesX[i].isCafe);
       
       function_marker.addLayer(markerX);

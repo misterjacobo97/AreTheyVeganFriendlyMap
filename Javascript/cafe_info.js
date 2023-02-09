@@ -36,6 +36,8 @@ var coordinatesX = [
     { isCafe: "Yes", lat: -33.79425745152499, lng: 151.1860205554046, title: "Espresso Zarcino", vegan: "No", chai: "Vegan chai", Soy: "Bonsoy", Oat: "", Almond: "", Date: "Jan 2023", Extra: "Yes" },
     { isCafe: "Yes", lat: -33.86517145711799, lng: 151.20287178783363, title: "Wild Sage Barangaroo", vegan: "No", chai: "Nope.", Soy: "", Oat: "Milklab", Almond: "", Date: "Sep 2022", Extra: "Yes" },
     { isCafe: "Yes", lat: -33.81387874694072, lng: 151.1694311304095, title: "Birdwood Cafe", vegan: "No", chai: "Vegan chai", Soy: "Bonsoy", Oat: "", Almond: "", Date: "Nov 2022", Extra: "Yes" },
-    { isCafe: "Yes", lat: -33.86435381387368, lng: 151.20142669807498, title: "Bourke St Barangaroo", vegan: "No", chai: "Chai Me!", Soy: "", Oat: "", Almond: "", Date: "Nov 2022", Extra: "Yes" }
+    { isCafe: "Yes", lat: -33.86435381387368, lng: 151.20142669807498, title: "Bourke St Barangaroo", vegan: "No", chai: "Chai Me!", Soy: "", Oat: "", Almond: "", Date: "Nov 2022", Extra: "Yes" },
 //non-cafe vegan places
+    { isCafe: "No", lat: -33.888713083198155, lng: 151.23275517092628, title: "Sandwiches by Bootleg", vegan: "Yes", chai: "Nope.", Soy: "", Oat: "", Almond: "", Date: "Feb 2023", Extra: "No" }
+
 ];

@@ -6,10 +6,10 @@ function select_layer_group(chai, cafe){
     else if(chai == "Vegan chai"){
         return markerVeganGroup;
     }
-    else if(chai == "Nope."){
+    else if(chai == "Nope." && cafe == "Yes"){
         return markerNotEthicalGroup;
     }
-    else if(cafe == "Yes"){
+    else if(cafe == "No"){
         return markerVeganRestaurants;
     }
 }
