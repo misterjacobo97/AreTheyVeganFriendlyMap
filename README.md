@@ -13,7 +13,7 @@ Apart from a project aimed at learning and practicing html, css and javascript -
 
 ### Planned / Ideas
 - An external database to pull the info from - Notion / google sheets?
-- A way to find you location that's less buggy
+- A way to find your location that's less buggy
 
 ### Complete
 - Custom coloured markers that can easily be expanded
