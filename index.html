@@ -37,9 +37,6 @@
 
   <!-- loads the layer group functions -->
   <script src="Javascript/layergroup_functions.js" ></script>
-  
-  <!-- importing the legend js -->
-  <script src="Javascript/legend.js" ></script>
 
   <!-- Create the interactive map content with JavaScript (.js) -->
   <script>
@@ -118,21 +115,6 @@
       "Not Friendly": markerNotEthicalGroup,
       "Vegan Non-coffee":markerVeganRestaurants,
     }
-
-
-  var legendControl = L.Control.extend({
-    options: {
-      position: 'bottomright'
-    },
-  
-    onAdd: function (map) {
-      var container = L.DomUtil.create('div', 'legend-control');
-      container.innerHTML = '<h3>Legend</h3><p>Information about the map symbols</p>';
-      return container;
-    }
-  });
-  
-  map.addControl(new legendControl());
 
     // add the layer control to the map where you can toggle the markers on or off
     L.control.layers(baseLayers, overlays, { collapsed: false }).addTo(map);
