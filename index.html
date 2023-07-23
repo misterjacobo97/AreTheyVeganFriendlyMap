@@ -1,134 +1,134 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Are They Vegan Friendly?</title>
 
-<head>
+    <!-- Load Leaflet code library: see http://leafletjs.com/download.html -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+      integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+      integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+      crossorigin=""
+    ></script>
 
-  <title>Are They Vegan Friendly?</title>
+    <!-- brings in the stylesheet for the map and the heading on the map -->
+    <link rel="stylesheet" type="text/css" href="Style_CSS/map_style.css" />
+  </head>
 
-  <!-- Load Leaflet code library: see http://leafletjs.com/download.html -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-    crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-    crossorigin=""></script>
+  <body>
+    <!-- Display title with HTML division tags  -->
+    <div id="map-title">Are They Vegan<br />Friendly?</div>
 
-  <!-- brings in the stylesheet for the map and the heading on the map -->
-  <link rel="stylesheet" type="text/css" href="Style_CSS/map_style.css">
+    <!-- display map -->
+    <div id="map"></div>
 
-</head>
+    <!-- add the map layers for use -->
+    <script src="Javascript/map_layers.js"></script>
 
-<body>
+    <!-- adds custom svg icons for use by "cafe_info.js"-->
+    <script src="Javascript/custom_icons.js"></script>
 
-  <!-- Display title with HTML division tags  -->
-  <div id="map-title">Are They Vegan<br>Friendly?</div>
+    <!-- loads all the cafe info for use -->
+    <script src="Javascript/cafe_info.js"></script>
 
-  <!-- display map -->
-  <div id="map"></div>
+    <!-- loads the layer group functions -->
+    <script src="Javascript/layergroup_functions.js"></script>
 
-  <!-- add the map layers for use -->
-  <script src="Javascript/map_layers.js"></script>
+    <!-- Create the interactive map content with JavaScript (.js) -->
+    <script>
+      // Initialize the map and set the view
+      var map = L.map("map").setView([-33.8688, 151.2093], 13);
 
-  <!-- adds custom svg icons for use by "cafe_info.js"-->
-  <script src="Javascript/custom_icons.js"></script>
+      // adds map layers into the actual map
+      mapLayerMinimal.addTo(map);
 
-  <!-- loads all the cafe info for use -->
-  <script src="Javascript/cafe_info.js"></script>
+      //greates objects with empty layer groups - so be later filled with the individual markers of their respective category.
+      var markerChaiMeGroup = L.layerGroup();
+      var markerVeganGroup = L.layerGroup();
+      var markerNotEthicalGroup = L.layerGroup();
+      var markerVeganRestaurants = L.layerGroup();
 
-  <!-- loads the layer group functions -->
-  <script src="Javascript/layergroup_functions.js" ></script>
+      // loop through coordinatesX cafe objects and add them as markers and to appropriate layergroup
+      for (var i = 0; i < coordinatesX.length; i++) {
+        var markerX = new L.marker([coordinatesX[i].lat, coordinatesX[i].lng], {
+          icon: custom_icon(coordinatesX[i].vegan, coordinatesX[i].extra),
+        }).addTo(map);
+        // if it's a cafe
+        if (coordinatesX[i].isCafe == "Yes") {
+          markerX.bindPopup(
+            "<h3><b>" +
+              coordinatesX[i].title +
+              "</b></h3>" +
+              "<b>Vegan cafe?</b> " +
+              coordinatesX[i].vegan +
+              "<br>" +
+              "<b>Extra cost for mylk? </b> " +
+              coordinatesX[i].Extra +
+              "<br>" +
+              "<b>Soy:</b> " +
+              coordinatesX[i].Soy +
+              "<br>" +
+              "<b>Oat:</b> " +
+              coordinatesX[i].Oat +
+              "<br>" +
+              "<b>Almond:</b> " +
+              coordinatesX[i].Almond +
+              "<br><br>" +
+              "<b>Date last confirmed:</b> " +
+              coordinatesX[i].Date
+          );
+          // after it makes the marker for each cafe, it then adds it to the respective layer group object
+        }
+        // if its not a cafe
+        else if (coordinatesX[i].isCafe == "No") {
+          markerX.bindPopup(
+            "<h3><b>" +
+              coordinatesX[i].title +
+              "</b></h3>" +
+              "<b>Date last confirmed:</b> " +
+              coordinatesX[i].Date
+          );
+          // after it makes the marker for each cafe, it then adds it to the respective layer group object
+        }
+        var function_marker = select_layer_group(
+          coordinatesX[i].chai,
+          coordinatesX[i].isCafe
+        );
 
-  <!-- Create the interactive map content with JavaScript (.js) -->
-  <script>
-
-    // Initialize the map and set the view
-    var map = L.map('map').setView([-33.8688, 151.2093], 13);
-
-    // adds map layers into the actual map
-    mapLayerMinimal.addTo(map);
-
-    //greates objects with empty layer groups - so be later filled with the individual markers of their respective category.
-    var markerChaiMeGroup = L.layerGroup();
-    var markerVeganGroup = L.layerGroup();
-    var markerNotEthicalGroup = L.layerGroup();
-    var markerVeganRestaurants = L.layerGroup();
-
-    //loop through coordinates and add markers for CHAI ME markers
-    // for (var i = 0; i < coordinatesChaiMe.length; i++) {
-    //   // creates a new marker for every item in the array
-    //   var markerChaiMe = new L.marker([coordinatesChaiMe[i].lat, coordinatesChaiMe[i].lng], { icon: custom_icon(coordinatesChaiMe[i].chai) }).addTo(map);
-    //   // creates a popup with the appropriate info that appears when the respective marker is clicked
-    //   markerChaiMe.bindPopup(
-    //     "<h3><b>" + coordinatesChaiMe[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesChaiMe[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesChaiMe[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesChaiMe[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesChaiMe[i].Date + "<br><b>Extra cost for Plant-Based?</b> " + coordinatesChaiMe[i].Extra);
-    //   // after it makes the marker for each cafe, it then adds it to the respective layer group object
-    //   markerChaiMeGroup.addLayer(markerChaiMe);
-    // }
-
-    //loop through coordinates and add markers for VEGAN markers
-    // for (var i = 0; i < coordinatesVeganOptions.length; i++) {
-    //   var markerVeganOptions = new L.marker([coordinatesVeganOptions[i].lat, coordinatesVeganOptions[i].lng], { icon: custom_icon(coordinatesVeganOptions[i].chai) }).addTo(map);
-    //   markerVeganOptions.bindPopup(
-    //     "<h3><b>" + coordinatesVeganOptions[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesVeganOptions[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesVeganOptions[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesVeganOptions[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesVeganOptions[i].Date + "<br><b>Extra cost for Plant-Based?</b> " + coordinatesVeganOptions[i].Extra);
-    //   // after it makes the marker for each cafe, it then adds it to the respective layer group object
-    //   markerVeganGroup.addLayer(markerVeganOptions);
-    // }
-
-    //loop through coordinates and add markers for NOT ETHICAL markers
-    // for (var i = 0; i < coordinatesNotEthical.length; i++) {
-    //   var markerNotEthical = new L.marker([coordinatesNotEthical[i].lat, coordinatesNotEthical[i].lng], { icon: custom_icon(coordinatesNotEthical[i].chai) }).addTo(map);
-    //   markerNotEthical.bindPopup(
-    //     "<h3><b>" + coordinatesNotEthical[i].title + "</b></h3>" + "<b>Soy:</b> " + coordinatesNotEthical[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesNotEthical[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesNotEthical[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesNotEthical[i].Date);
-    //   // after it makes the marker for each cafe, it then adds it to the respective layer group object
-    //   markerNotEthicalGroup.addLayer(markerNotEthical);
-    // }
-
-    // loop through coordinatesX cafe objects and add them as markers and to appropriate layergroup
-    for (var i = 0; i < coordinatesX.length; i++) {
-      var markerX = new L.marker([coordinatesX[i].lat, coordinatesX[i].lng], { icon: custom_icon(coordinatesX[i].vegan, coordinatesX[i].extra) }).addTo(map);
-      // if it's a cafe
-      if(coordinatesX[i].isCafe == "Yes"){
-        markerX.bindPopup(
-          "<h3><b>" + coordinatesX[i].title + "</b></h3>" + "<b>Vegan cafe?</b> " + coordinatesX[i].vegan + "<br>" + "<b>Extra cost for mylk? </b> " + coordinatesX[i].Extra + "<br>" + "<b>Soy:</b> " + coordinatesX[i].Soy + "<br>" + "<b>Oat:</b> " + coordinatesX[i].Oat + "<br>" + "<b>Almond:</b> " + coordinatesX[i].Almond + "<br><br>" + "<b>Date last confirmed:</b> " + coordinatesX[i].Date);
-        // after it makes the marker for each cafe, it then adds it to the respective layer group object
+        function_marker.addLayer(markerX);
       }
-      // if its not a cafe
-      else if(coordinatesX[i].isCafe == "No"){
-        markerX.bindPopup(
-          "<h3><b>" + coordinatesX[i].title + "</b></h3>" + "<b>Date last confirmed:</b> " + coordinatesX[i].Date);
-        // after it makes the marker for each cafe, it then adds it to the respective layer group object
-      }
-      var function_marker = select_layer_group(coordinatesX[i].chai, coordinatesX[i].isCafe);
-      
-      function_marker.addLayer(markerX);
-    }
 
-    // Makes a layer control feature
-    // creates a base layer object
-    var baseLayers = {
-      "Map": mapLayerMinimal
-    }
+      // Makes a layer control feature
+      // creates a base layer object
+      var baseLayers = {
+        Map: mapLayerMinimal,
+      };
 
-    // creates an overlay object
-    var overlays = {
-      "Chai Me": markerChaiMeGroup,
-      "Vegan chai": markerVeganGroup,
-      "Not Friendly": markerNotEthicalGroup,
-      "Vegan Non-coffee":markerVeganRestaurants,
-    }
+      // creates an overlay object
+      var overlays = {
+        "Chai Me": markerChaiMeGroup,
+        "Vegan chai": markerVeganGroup,
+        "Not Friendly": markerNotEthicalGroup,
+        "Vegan Non-coffee": markerVeganRestaurants,
+      };
 
-    // add the layer control to the map where you can toggle the markers on or off
-    L.control.layers(baseLayers, overlays, { collapsed: false }).addTo(map);
+      // add the layer control to the map where you can toggle the markers on or off
+      L.control.layers(baseLayers, overlays, { collapsed: false }).addTo(map);
 
-    // ticks the checkboxes after the control is loaded
-    setTimeout(function () {
-      var checkboxes = document.querySelectorAll('.leaflet-control-layers-selector');
-      for (var i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].click();
-      }
-    }, 0);
-    
-
-  </script>
-</body>
-
+      // ticks the checkboxes after the control is loaded
+      setTimeout(function () {
+        var checkboxes = document.querySelectorAll(
+          ".leaflet-control-layers-selector"
+        );
+        for (var i = 0; i < checkboxes.length; i++) {
+          checkboxes[i].click();
+        }
+      }, 0);
+    </script>
+  </body>
 </html>
