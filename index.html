@@ -6,26 +6,24 @@
     <!-- Load Leaflet code library: see http://leafletjs.com/download.html -->
     <link
       rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-      integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
       crossorigin=""
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
+    />
+    <link rel="stylesheet" href="Style_CSS/map_style.css" />
+
     <script
-      src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-      integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
       crossorigin=""
     ></script>
 
-    <!-- brings in the stylesheet for the map and the heading on the map -->
-    <link rel="stylesheet" type="text/css" href="Style_CSS/map_style.css" />
-  </head>
-
-  <body>
     <!-- Display title with HTML division tags  -->
     <div id="map-title">Are They Vegan<br />Friendly?</div>
-
-    <!-- display map -->
-    <div id="map"></div>
 
     <!-- add the map layers for use -->
     <script src="Javascript/map_layers.js"></script>
@@ -39,13 +37,16 @@
     <!-- loads the layer group functions -->
     <script src="Javascript/layergroup_functions.js"></script>
 
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  </head>
+
+  <body>
+    <div id="map"></div>
+
     <!-- Create the interactive map content with JavaScript (.js) -->
     <script>
       // Initialize the map and set the view
       var map = L.map("map").setView([-33.8688, 151.2093], 13);
-
-      // adds map layers into the actual map
-      mapLayerMinimal.addTo(map);
 
       //greates objects with empty layer groups - so be later filled with the individual markers of their respective category.
       var markerChaiMeGroup = L.layerGroup();
@@ -103,10 +104,11 @@
         function_marker.addLayer(markerX);
       }
 
-      // Makes a layer control feature
+      //// Makes a layer control feature and layers
       // creates a base layer object
       var baseLayers = {
-        Map: mapLayerMinimal,
+        Dark: CartoDB_DarkMatter,
+        Light: mapLayerMinimal,
       };
 
       // creates an overlay object
@@ -117,18 +119,36 @@
         "Vegan Non-coffee": markerVeganRestaurants,
       };
 
-      // add the layer control to the map where you can toggle the markers on or off
-      L.control.layers(baseLayers, overlays, { collapsed: false }).addTo(map);
+      // adds map layers into the actual map
+      CartoDB_DarkMatter.addTo(map);
 
-      // ticks the checkboxes after the control is loaded
-      setTimeout(function () {
-        var checkboxes = document.querySelectorAll(
-          ".leaflet-control-layers-selector"
-        );
-        for (var i = 0; i < checkboxes.length; i++) {
-          checkboxes[i].click();
-        }
-      }, 0);
+      // add the layer control to the map where you can toggle the markers on or off
+      var control = L.control
+        .layers(baseLayers, overlays, { collapsed: false })
+        .addTo(map);
+
+      // var geoControl = L.control
+      //   .geocoder({
+      //     defaultMarkGeocode: false,
+      //   })
+      //   .on("markgeocode", function (e) {
+      //     var bbox = e.geocode.bbox;
+      //     var poly = L.polygon([
+      //       bbox.getSouthEast(),
+      //       bbox.getNorthEast(),
+      //       bbox.getNorthWest(),
+      //       bbox.getSouthWest(),
+      //     ]).addTo(map);
+      //     map.fitBounds(poly.getBounds());
+      //   })
+      //   .addTo(map);
+      // if (!navigator.geolocation) {
+      //   console.log("your browser doesnt support geolocation!");
+      // } else {
+      //   setInterval(() => {
+      //     navigator.geolocation.getCurrentPosition(getPosition);
+      //   }, 5000);
+      // }
     </script>
   </body>
 </html>

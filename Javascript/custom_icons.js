@@ -39,5 +39,7 @@ function custom_icon(vegan, extra) {
     return Custom_icon_objects[0].icon;
   } else if (vegan == "No" && extra != "Yes") {
     return Custom_icon_objects[1].icon;
+  } else {
+    return Custom_icon_objects[0].icon;
   }
 }
